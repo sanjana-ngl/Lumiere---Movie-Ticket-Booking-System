@@ -739,6 +739,28 @@ function renderShowtimes() {
 }
 
 // ─── SEATS ────────────────────────────────────────────────────────────────────
+function toggleSeat(num, el) {
+  if (state.selectedSeats.has(num)) {
+    state.selectedSeats.delete(num);
+    el.className = 'seat available';
+  } else {
+    state.selectedSeats.add(num);
+    el.className = 'seat selected';
+  }
+  updateSeatSummary();
+}
+
+function updateSeatSummary() {
+  const count = state.selectedSeats.size;
+  const total = count * (state.currentShowtime?.price || 0);
+
+  document.getElementById('summaryText').textContent =
+    count === 0
+      ? 'Select seats to continue'
+      : `${count} seat${count > 1 ? 's' : ''} · ₹${total.toLocaleString('en-IN')} tickets`;
+
+  document.getElementById('btnProceedFood').disabled = count === 0;
+}
 function renderSeats() {
   const show = wasm(
     'getShow',
@@ -800,7 +822,6 @@ function proceedToFood() {
   if (!state.selectedSeats.size) { showToast('Select at least one seat','error'); return; }
   showSection('food');
 }
-
 // ─── FOOD ──────────────────────────────────────────────────────────────────────
 function renderFood() {
   // Category filter
