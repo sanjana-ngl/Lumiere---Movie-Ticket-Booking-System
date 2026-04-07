@@ -1333,20 +1333,49 @@ function doSearch() {
 // ─── STATS ────────────────────────────────────────────────────────────────────
 function renderStats() {
   const s = wasm('getStats');
+
+  const totalBookings = s?.totalBookings || 0;
+
+  // 5 locations × 22 movies × 5 shows per movie × 50 seats per show
+  const totalShows = LOCATIONS.length * Object.keys(MOVIE_DATA).length * 5;
+  const totalSeats = totalShows * 50;
+
+  const availableSeats = totalSeats - totalBookings;
+  const occupancy = totalSeats > 0
+    ? ((totalBookings / totalSeats) * 100).toFixed(1)
+    : 0;
+
   document.getElementById('statsContent').innerHTML = `
     <div class="stats-overview">
-      <div class="stat-card"><div class="stat-label">Total Bookings Made</div><div class="stat-value">${s?.totalBookings||0}</div></div>
-      <div class="stat-card"><div class="stat-label">Movies Available</div><div class="stat-value">${Object.keys(MOVIE_DATA).length}</div></div>
-      <div class="stat-card"><div class="stat-label">Cities</div><div class="stat-value">${LOCATIONS.length}</div></div>
-      <div class="stat-card"><div class="stat-label">Daily Shows / Movie</div><div class="stat-value">5</div></div>
+      <div class="stat-card">
+        <div class="stat-label">Total Bookings Made</div>
+        <div class="stat-value">${totalBookings}</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Movies Available</div>
+        <div class="stat-value">${Object.keys(MOVIE_DATA).length}</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Occupancy %</div>
+        <div class="stat-value">${occupancy}%</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Available Seats Count</div>
+        <div class="stat-value">${availableSeats}</div>
+      </div>
     </div>
+
     <div style="background:var(--dark-2);border:1px solid rgba(200,169,110,.1);border-radius:12px;padding:2rem">
       <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem">Now Showing — All Titles</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem">
         ${Object.entries(MOVIE_DATA).map(([name,d])=>`
         <div style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:var(--dark-3);border-radius:8px">
           <span style="font-size:1.5rem">${d.emoji}</span>
-          <div><div style="font-size:.85rem;color:var(--cream)">${name}</div>
+          <div>
+            <div style="font-size:.85rem;color:var(--cream)">${name}</div>
             <div style="font-size:.7rem;color:var(--text-dim)">${d.genre} · ${d.year}</div>
           </div>
         </div>`).join('')}
