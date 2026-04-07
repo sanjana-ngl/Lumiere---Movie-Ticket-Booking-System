@@ -739,17 +739,6 @@ function renderShowtimes() {
 }
 
 // ─── SEATS ────────────────────────────────────────────────────────────────────
-function toggleSeat(num, el) {
-  if (state.selectedSeats.has(num)) {
-    state.selectedSeats.delete(num);
-    el.className = 'seat available';
-  } else {
-    state.selectedSeats.add(num);
-    el.className = 'seat selected';
-  }
-  updateSeatSummary();
-}
-
 function updateSeatSummary() {
   const count = state.selectedSeats.size;
   const total = count * (state.currentShowtime?.price || 0);
@@ -761,6 +750,19 @@ function updateSeatSummary() {
 
   document.getElementById('btnProceedFood').disabled = count === 0;
 }
+
+function toggleSeat(num, el) {
+  if (state.selectedSeats.has(num)) {
+    state.selectedSeats.delete(num);
+    el.className = 'seat available';
+  } else {
+    state.selectedSeats.add(num);
+    el.className = 'seat selected';
+  }
+  updateSeatSummary();
+}
+
+
 function renderSeats() {
   const show = wasm(
     'getShow',
