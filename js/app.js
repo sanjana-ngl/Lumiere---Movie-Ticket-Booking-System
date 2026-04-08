@@ -150,7 +150,7 @@ const MOVIE_DATA = {
   
   'Wolf Man': {
     emoji:'🐺',
-    posterUrl:'https://m.media-amazon.com/images/M/MV5BOWU3ZjRmMGMtMzhmZi00YTZmLWJkODItZjE2ZmM3NjEzMGUyXkEyXkFqcGdeQXRyYW5zY29kZS13b3JrZmxvdw@@._V1_QL75_UX500_CR0,0,500,281_.jpg',
+    posterUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFsbLDpqJ4os0zkWTiCkUFW__HScxfghK2NBig3N9ygMt8IL5S',
     bg:'linear-gradient(135deg,#0a0a0a,#1a1010,#0a0a0a)',
     genre:'Thriller/Horror',
     year:2025
