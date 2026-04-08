@@ -141,7 +141,7 @@ const MOVIE_DATA = {
 
   'Snow White': {
     emoji:'🍎',
-    posterUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1S9m85JoA69xAbjllvJV2uTAqBOdYXEW8Eg&s',
+    posterUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFsbLDpqJ4os0zkWTiCkUFW__HScxfghK2NBig3N9ygMt8IL5S',
     bg:'linear-gradient(135deg,#1a0a1a,#2a1020,#1a0a1a)',
     genre:'Fantasy',
     year:2025
@@ -150,7 +150,6 @@ const MOVIE_DATA = {
   
   'Wolf Man': {
     emoji:'🐺',
-    posterUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFsbLDpqJ4os0zkWTiCkUFW__HScxfghK2NBig3N9ygMt8IL5S',
     bg:'linear-gradient(135deg,#0a0a0a,#1a1010,#0a0a0a)',
     genre:'Thriller/Horror',
     year:2025
